@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Excel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+</head>
+<body>
+    <h1>Export Excel</h1>
+    <button id="exportBtn">Exporter vers Excel</button>
+
+    <script>
+        // Données sous forme de tableau imbriqué
+        const data = [
+            ['Nom', 'Âge', 'Ville'],
+            ['Alice', 30, 'Paris'],
+            ['Bob', 25, 'New York'],
+            ['Charlie', 35, 'Londres'],
+            ['David', 40, 'Berlin'],
+            ['Emma', 28, 'Tokyo'],
+            ['Frank', 33, 'Rome'],
+            ['Grace', 29, 'Sydney'],
+            ['Henry', 45, 'Moscou'],
+            ['Ivy', 27, 'Toronto']
+        ];
+
+        // Fonction pour exporter vers Excel
+        const exportToExcel = () => {
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            XLSX.utils.book_append_sheet(wb, ws, 'Data');
+            XLSX.writeFile(wb, 'data.xlsx');
+        };
+
+        // Ajout d'un gestionnaire d'événement au bouton d'exportation
+        const exportButton = document.getElementById('exportBtn');
+        exportButton.addEventListener('click', exportToExcel);
+    </script>
+</body>
+</html>
